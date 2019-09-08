@@ -55,7 +55,7 @@ public abstract class WorldBase {
 
         for (int i = 0; i <= 800; i = i + GridPixelsize) {
         	Color color_purple = new Color (153,0,152);
-            g.setColor(color_purple); //This is the grid color of the gridlines. Added black to NOT show them.
+            g.setColor(color_purple); //This is the grid color of the gridlines. Added purple to NOT show them.
             g.drawLine(0, i, handler.getWidth() , i);
             g.drawLine(i,0,i,handler.getHeight());
 
