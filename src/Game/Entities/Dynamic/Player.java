@@ -21,7 +21,12 @@ public class Player {
     public int moveCounter;
 
     public String direction;//is your first name one?
+    
+    //----------------------- variable for speed -------------------------//
+    
+    public int speed = 5;
 
+    //-------------------------------- end ------------------------------//
     public Player(Handler handler){
         this.handler = handler;
         xCoord = 0;
@@ -35,7 +40,7 @@ public class Player {
 
     public void tick(){
         moveCounter++;
-        if(moveCounter>=5) {
+        if(moveCounter>=speed) {
             checkCollisionAndMove();
             moveCounter=0;
         }
@@ -128,6 +133,17 @@ public class Player {
         Tail tail= null;
         handler.getWorld().appleLocation[xCoord][yCoord]=false;
         handler.getWorld().appleOnBoard=false;
+        //------------------ experiment adding speed to snake when eats ------------------//
+        
+        moveCounter++;
+        if(moveCounter>=speed) {
+        	checkCollisionAndMove();
+        	moveCounter=0;
+        	speed--;
+        	}
+        
+        //-------------------------------------- end ------------------------------------//
+
         switch (direction){
             case "Left":
                 if( handler.getWorld().body.isEmpty()){
@@ -226,6 +242,7 @@ public class Player {
 
                 }
                 break;
+                
         }
         handler.getWorld().body.addLast(tail);
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
