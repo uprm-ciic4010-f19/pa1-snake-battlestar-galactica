@@ -6,6 +6,16 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import com.sun.java.swing.plaf.windows.TMSchema.State;
+
+import Game.GameStates.PauseState;
+
+//----------------- import math for score -------------------------//
+
+import java.math.*;
+
+//----------------------------- end ------------------------------//
+
 /**
  * Created by AlexVR on 7/2/2018.
  */
@@ -26,6 +36,7 @@ public class Player {
     //----------------------- variable for speed -------------------------//
     
     public int speed = 5;
+    public double comida = 0;
 
     //-------------------------------- end ------------------------------//
     public Player(Handler handler){
@@ -53,6 +64,11 @@ public class Player {
             direction="Left";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
             direction="Right";
+        }
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
+        	
+        	State.setState(handler.getGame().gameState);
+        	
         }
 //--------------------------------Implementing "N"---------------------------------//
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){
@@ -162,7 +178,9 @@ public class Player {
             handler.getWorld().body.addLast(tail);
             handler.getWorld().playerLocation[tail.x][tail.y] = true;
         }
-//---------------------------------------End----------------------------------------//            
+//---------------------------------------End----------------------------------------//  
+        
+        
 //----------------------------Increasing/Decreasing speed--------------------------//
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){
         	speed--;
@@ -171,6 +189,8 @@ public class Player {
         	speed++;
         }
 //----------------------------------------End----------------------------------------//
+        
+        
     }
 
     public void checkCollisionAndMove(){
@@ -180,28 +200,41 @@ public class Player {
         switch (direction){
             case "Left":
                 if(xCoord==0){
-                    kill();
+                	//kill();
+                	
+                	//------------------------- Teleportation in X axis ---------------------//
+                    xCoord += (xCoord) + handler.getWorld().GridWidthHeightPixelCount-1;
+                    //-------------------------------- end ---------------------------------//
                 }else{
                     xCoord--;
                 }
                 break;
             case "Right":
                 if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-                    kill();
+                    //kill();
+                	//------------------------ Teleportation in X axis -------------------//
+                    xCoord = 0;
+                    //-------------------------------- end -------------------------------//
                 }else{
                     xCoord++;
                 }
                 break;
             case "Up":
                 if(yCoord==0){
-                    kill();
+                    //kill();
+                	//------------------------- Teleportation in Y axis -----------------//
+                	yCoord += (yCoord) + handler.getWorld().GridWidthHeightPixelCount-1;
+                	//-------------------------------- end ------------------------------//
                 }else{
                     yCoord--;
                 }
                 break;
             case "Down":
                 if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-                    kill();
+                    //kill();
+                	//------------------------ Teleportation in Y axis -----------------//
+                	yCoord = 0;
+                	//------------------------------- end ------------------------------//
                 }else{
                     yCoord++;
                 }
@@ -246,6 +279,7 @@ public class Player {
     }
 
     public void Eat(){
+    	justAte = true;
         lenght++;
         Tail tail= null;
         handler.getWorld().appleLocation[xCoord][yCoord]=false;
@@ -361,6 +395,16 @@ public class Player {
                 break;
                 
         }
+        
+        if(justAte) {
+        	
+        	//--------------------------- Calculating rounded score ---------------------------//
+        	comida += (Math.sqrt(2* comida +1));
+        	System.out.println(Math.round(comida));
+        	//-------------------------------------- end -------------------------------------//
+        	
+        }
+        
         handler.getWorld().body.addLast(tail);
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
     }
@@ -383,4 +427,5 @@ public class Player {
     public void setJustAte(boolean justAte) {
         this.justAte = justAte;
     }
+    
 }
