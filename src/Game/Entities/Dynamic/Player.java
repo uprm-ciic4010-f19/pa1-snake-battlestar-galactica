@@ -53,19 +53,30 @@ public class Player {
             moveCounter=0;
         }
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
-            direction="Up";
+        	if(direction != "Down") { //Preventing Backtracking
+        		direction="Up";
+        	}
+        
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
-            direction="Down";
+        	if (direction != "Up") { //Preventing Backtracking
+        		direction="Down";
+        	}
+            
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
-            direction="Left";
+        	if (direction != "Right") {//Preventing Backtracking
+        		direction="Left";
+        	}
+        	
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
-            direction="Right";
+        	if (direction != "Left") {//Preventing Backtracking
+        		direction="Right";
+        	}
         }
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
         	
         	//handler.getKeyManager().setUi
-        	
         }
+        
 //--------------------------------Implementing "N"---------------------------------//
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){
         	lenght++;
@@ -273,6 +284,7 @@ public class Player {
 
 
     }
+    
 
     public void Eat(){
     	justAte = true;
@@ -390,6 +402,7 @@ public class Player {
                 }
                 break;
                 
+                
         }
         
         if(justAte) {
@@ -415,6 +428,7 @@ public class Player {
             }
         }
     }
+    
 
     public boolean isJustAte() {
         return justAte;
