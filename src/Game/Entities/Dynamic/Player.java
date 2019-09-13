@@ -6,10 +6,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-import com.sun.java.swing.plaf.windows.TMSchema.State;
-
-import Game.GameStates.PauseState;
-
 //----------------- import math for score -------------------------//
 
 import java.math.*;
@@ -67,7 +63,7 @@ public class Player {
         }
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
         	
-        	State.setState(handler.getGame().gameState);
+        	//handler.getKeyManager().setUi
         	
         }
 //--------------------------------Implementing "N"---------------------------------//
