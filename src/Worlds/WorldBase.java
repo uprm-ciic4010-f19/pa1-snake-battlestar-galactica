@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * Created by AlexVR on 7/2/2018.
  */
 public abstract class WorldBase {
-
+	
     //How many pixels are from left to right
     //How many pixels are from top to bottom
     //Must be equal
@@ -54,14 +54,23 @@ public abstract class WorldBase {
     public void render(Graphics g){
 
         for (int i = 0; i <= 800; i = i + GridPixelsize) {
-
-            g.setColor(Color.white);
+        	Color color_purple = new Color (153,0,152);
+            g.setColor(color_purple); //This is the grid color of the gridlines. Added purple to NOT show them.
             g.drawLine(0, i, handler.getWidth() , i);
             g.drawLine(i,0,i,handler.getHeight());
 
         }
 
+        //---------------------------------- added display score ----------------------------------//
+            // set color to white 
+            g.setColor(Color.white); 
 
+            // set Font 
+            g.setFont(new Font("Bold", 1, 22)); 
+
+            // draw a string 
+            g.drawString("Your score: " + player.comida, 620, 30);
+       //-------------------------------------------- end ----------------------------------------//
 
     }
 
