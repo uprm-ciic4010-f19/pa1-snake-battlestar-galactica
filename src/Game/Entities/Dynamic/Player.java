@@ -320,7 +320,7 @@ public class Player {
 			moveCounter = 0;
 			speed--;
 		}
-
+//
 		// -------------------------------------- end ------------------------------------//
 
 		switch (direction) {
