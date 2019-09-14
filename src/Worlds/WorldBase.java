@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * Created by AlexVR on 7/2/2018.
  */
 public abstract class WorldBase {
-
+	
     //How many pixels are from left to right
     //How many pixels are from top to bottom
     //Must be equal
@@ -61,7 +61,16 @@ public abstract class WorldBase {
 
         }
 
+        //---------------------------------- added display score ----------------------------------//
+            // set color to white 
+            g.setColor(Color.white); 
 
+            // set Font 
+            g.setFont(new Font("Bold", 1, 22)); 
+
+            // draw a string 
+            g.drawString("Your score: " + player.comida, 620, 30);
+       //-------------------------------------------- end ----------------------------------------//
 
     }
 

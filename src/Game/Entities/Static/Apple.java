@@ -1,5 +1,7 @@
 package Game.Entities.Static;
 
+import java.util.Properties;
+
 import Main.Handler;
 
 /**
@@ -17,6 +19,9 @@ public class Apple {
         this.xCoord=x;
         this.yCoord=y;
     }
-
+    public static boolean isGood() {
+    	return true;
+    	
+    }
 
 }
